@@ -2,8 +2,9 @@ import { createWeb3Modal } from '@web3modal/wagmi/react'
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
 
 import { WagmiProvider } from 'wagmi'
-import { arbitrum, mainnet } from 'wagmi/chains'
+import {  mainnet } from 'wagmi/chains'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useEffect } from 'react'
 
 // 0. Setup queryClient
 const queryClient = new QueryClient()
@@ -20,7 +21,7 @@ const metadata = {
 }
 
 // const chains = [mainnet, arbitrum] as const
-const chains = [mainnet, arbitrum] 
+const chains = [mainnet,] 
 const config = defaultWagmiConfig({
   chains,
   projectId,
@@ -36,8 +37,12 @@ createWeb3Modal({
   enableOnramp: true // Optional - false as default
 })
 
+
 // eslint-disable-next-line react/prop-types
 export function Web3ModalProvider({ children }) {
+  useEffect(()=>{
+  
+  },[])
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
